@@ -1,0 +1,7 @@
+toolchain/
+dependency_tmp/
+morello_toolchain/
+
+# Weird facl stuff?
+**/*.swp
+*.swp
