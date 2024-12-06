@@ -1,0 +1,12 @@
+#DESCRIPTION: Morello BPF
+bpf_map01 bpf_map01
+bpf_prog01 bpf_prog01
+bpf_prog02 bpf_prog02
+bpf_prog03 bpf_prog03
+bpf_prog04 bpf_prog04
+bpf_prog05 bpf_prog05
+bpf_prog06 bpf_prog06
+bpf_prog07 bpf_prog07
+bpf_valid_attr bpf_valid_attr
+bpf_print_sp bpf_print_sp
+bpf_rand bpf_rand
