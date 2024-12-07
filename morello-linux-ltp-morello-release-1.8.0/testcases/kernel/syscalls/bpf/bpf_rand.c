@@ -44,9 +44,9 @@ int load_prog()
 
 
 	struct bpf_insn PROG[] = {
-		/* Call bpf_trace_printk helper */
+		
 		BPF_EMIT_CALL(BPF_FUNC_get_prandom_u32),
-		//BPF_MOV64_IMM(BPF_REG_0, 0), // set ret val if we don't call above
+		
 
 		BPF_EXIT_INSN(),
 	};
