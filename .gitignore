@@ -3,9 +3,18 @@ dependency_tmp/
 morello_toolchain/
 ltp_build/
 ltp_install/
-morello-linux-ltp-morello-release-1.8.0/
+morello-linux-ltp-morello-release-1.8.0/*
+!morello-linux-ltp-morello-release-1.8.0/testcases/
+morello-linux-ltp-morello-release-1.8.0/testcases/*
+!morello-linux-ltp-morello-release-1.8.0/testcases/kernel/
+morello-linux-ltp-morello-release-1.8.0/testcases/kernel/*
+!morello-linux-ltp-morello-release-1.8.0/testcases/kernel/syscalls/
+morello-linux-ltp-morello-release-1.8.0/testcases/kernel/syscalls/*
+!morello-linux-ltp-morello-release-1.8.0/testcases/kernel/syscalls/bpf/
 
 # Weird facl stuff?
 **/*.swp
 *.swp
+
+
 
