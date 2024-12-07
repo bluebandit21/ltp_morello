@@ -47,7 +47,7 @@ int load_prog(int fd)
 	 */
 	struct bpf_insn PROG[] = {
 		BPF_EMIT_CALL(BPF_FUNC_get_prandom_u32), //Get random value in r0
-		BPF_MOV64_REG(BPF_REG_3, BPF_REG_0),     /* r3 = r0 */
+		BPF_MOV64_REG(BPF_REG_8, BPF_REG_0),     /* r8 = r0 */
 		
 		/* Load the map FD into r1 (place holder) */
 		BPF_LD_MAP_FD(BPF_REG_1, fd),
@@ -61,7 +61,7 @@ int load_prog(int fd)
 		BPF_JMP_IMM(BPF_JEQ, BPF_REG_0, 0, 3),
 		/* Set map[0] = r3 */
 		BPF_MOV64_REG(BPF_REG_1, BPF_REG_0),     /* r1 = r0 */
-		BPF_STX_MEM(BPF_W, BPF_REG_1, BPF_REG_3, 0), /* 24: *r1 = r3 */
+		BPF_STX_MEM(BPF_DW, BPF_REG_1, BPF_REG_8, 0), /* 24: *r1 = r8 */
 
 		BPF_MOV64_IMM(BPF_REG_0, 0),             /* r0 = 0 */
 		BPF_EXIT_INSN(),		         /* return r0 */
