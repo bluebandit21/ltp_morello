@@ -12,3 +12,4 @@ bpf_print_sp bpf_print_sp
 bpf_rand bpf_rand
 bpf_callrand bpf_callrand
 bpf_readmem bpf_readmem
+bpf_boring bpf_boring
