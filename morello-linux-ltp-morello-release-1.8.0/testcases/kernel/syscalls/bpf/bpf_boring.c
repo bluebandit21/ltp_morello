@@ -48,8 +48,7 @@ int load_prog()
 		BPF_MOV64_IMM(BPF_REG_8, 15),     /* r8 = 15 */
 		BPF_ALU64_IMM(BPF_ADD, BPF_REG_8, 30), /* r8 += 30 */
 		
-
-		BPF_MOV64_IMM(BPF_REG_0, 0),             /* r0 = 0 */
+		BPF_MOV64_REG(BPF_REG_0, BPF_REG_8), /* r0 = r8 */
 		BPF_EXIT_INSN(),		         /* return r0 */
 	};
 
