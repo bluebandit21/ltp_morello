@@ -46,9 +46,6 @@ int load_prog(int fd)
 	 * fp/r10 = stack frame pointer
 	 */
 	struct bpf_insn PROG[] = {
-		BPF_EMIT_CALL(BPF_FUNC_get_prandom_u32), //Get random value in r0
-		BPF_MOV64_REG(BPF_REG_8, BPF_REG_0),     /* r8 = r0 */
-		
 		/* Load the map FD into r1 (place holder) */
 		BPF_LD_MAP_FD(BPF_REG_1, fd),
 		/* Put (key = 0) on stack and key ptr into r2 */
@@ -58,7 +55,7 @@ int load_prog(int fd)
 
 		BPF_MOV64_REG(BPF_REG_3, BPF_REG_10),   /* r3 = fp */
 		BPF_ALU64_IMM(BPF_ADD, BPF_REG_3, -16),  /* r3 = r3 - 16 */
-		BPF_STX_MEM(BPF_DW, BPF_REG_3, BPF_REG_8, 0), /* 24: *r3 = r8 */
+		BPF_ST_MEM(BPF_DW, BPF_REG_3, 0, 1),    /* *r3 = 1 */
 
 		BPF_MOV64_IMM(BPF_REG_4, BPF_ANY),            /* r4 = BPF_ANY */
 
@@ -92,10 +89,12 @@ void run(void)
 	SAFE_CLOSE(prog_fd);
 
 	bpf_map_array_get(map_fd, &key, &val);
-	if (val == 0) {
-		tst_res(TFAIL, "val = 0!");
-	} else {
-		tst_res(TPASS, "val = %lu", val);
+	if (val != 1) {
+		tst_res(TFAIL,
+			"val = %lu, but should be val = 1",
+			val);
+        } else {
+	        tst_res(TPASS, "val = 1");
 	}
 
 	SAFE_CLOSE(map_fd);
